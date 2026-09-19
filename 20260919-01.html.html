@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI課程學員介紹</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .old {
+            background: #e8f4ff;
+            color: #1976d2;
+        }
+
+        .new {
+            background: #eaf8ee;
+            color: #2e7d32;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #263238;
+        }
+
+        .age {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-top: 15px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .section-content {
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .highlight {
+            margin-top: 18px;
+            padding: 12px 15px;
+            background: #fff8e1;
+            border-left: 4px solid #f4b400;
+            border-radius: 8px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI課程學員介紹</h1>
+    <div class="subtitle">彰化社區大學｜AI學習班</div>
+
+    <div class="cards">
+
+        <!-- 1 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">1號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">王麗珠</div>
+            <div class="age">年齡：68</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    已上課很多期，因想學AI而來社大；本次請假。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                想學習AI，所以來社大上課
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">2號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">林雅慧</div>
+            <div class="age">年齡：53</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第2次上課；上學期缺課較多，因此重修。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                這學期再來學一次
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">3號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">許芳榛</div>
+            <div class="age">年齡：47</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第3次上課；因上學期缺課較多而重修。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                希望可以運用在工作上
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">4號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">曾玉美</div>
+            <div class="age">年齡：64</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第2次上課；因有事請假一個月。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                第二次上課
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">5號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">黃鳳庭</div>
+            <div class="age">年齡：56</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    曾上過課；週六下午來上課。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                湊人氣，提升電腦學習力
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">6號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">王淑貞</div>
+            <div class="age">年齡：52</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第2次上課。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                想要過充實的週六
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">7號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">黃秋香</div>
+            <div class="age">年齡：70</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第3次來社大上課；想學AI。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                70歲也要學AI
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">8號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">林麗華</div>
+            <div class="age">年齡：70</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    週六放假日覺得無趣，因此來學習。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                認識新東西，交年輕朋友
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">9號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">鄭健彰</div>
+            <div class="age">年齡：65</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第2次上課；希望增加知識。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                追上世界的潮流
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">10號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">楊秀姝</div>
+            <div class="age">年齡：67</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    喜歡課堂氛圍，因此繼續上課。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                溫故知新
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">12號</span>
+                <span class="badge old">舊學員</span>
+            </div>
+            <div class="name">林筱雲</div>
+            <div class="age">年齡：26</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第2次上課；喜歡AI課程與老師教學。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                跟得上時事，老師又很細心
+            </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">13號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">林奕儒</div>
+            <div class="age">年齡：61</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；週六下午時間允許。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                想增加AI的能力
+            </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">15號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">許惠</div>
+            <div class="age">年齡：69</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；已有AI使用經驗。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                會用，但是想再深入一點學習
+            </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">16號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">粘麗莉</div>
+            <div class="age">年齡：63</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    初次到社大上課。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                希望將AI帶入生活化
+            </div>
+        </div>
+
+        <!-- 17 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">17號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">莊欽章</div>
+            <div class="age">年齡：62</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第1次上課；利用空檔學AI。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                利用時間空檔學AI
+            </div>
+        </div>
+
+        <!-- 18 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">18號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">施惠蓁</div>
+            <div class="age">年齡：58</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次到社大上課；想學AI。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                想學習AI，所以來社大
+            </div>
+        </div>
+
+        <!-- 19 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">19號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">曾昭銘</div>
+            <div class="age">年齡：64</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；希望深入了解AI並與同學交流。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                AI有多難學、有多廣度
+            </div>
+        </div>
+
+        <!-- 20 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">20號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">廖德昭</div>
+            <div class="age">年齡：75</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    曾參加過2次AI課程，本次重修。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                重修的主要目的是喚起學習記憶
+            </div>
+        </div>
+
+        <!-- 21 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">21號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">李森平</div>
+            <div class="age">年齡：67</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；退休後時間較多。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                退休沒事做，所以來學習新知
+            </div>
+        </div>
+
+        <!-- 22 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">22號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">陸曉蘭</div>
+            <div class="age">年齡：37</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；想認識AI。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                希望能應用到生活
+            </div>
+        </div>
+
+        <!-- 23 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">23號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">林科鋐</div>
+            <div class="age">年齡：19</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；陪媽媽一起來。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                怕媽媽一個人來上課太無聊
+            </div>
+        </div>
+
+        <!-- 24 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">24號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">高士弘</div>
+            <div class="age">年齡：50</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；週六下午在家無聊。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                週六下午在家無聊，所以來上課
+            </div>
+        </div>
+
+        <!-- 25 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">25號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">施慧玲</div>
+            <div class="age">年齡：62</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上課；想培養興趣。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                週六下午在家無聊，想來學個興趣
+            </div>
+        </div>
+
+        <!-- 26 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">26號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">孫連雲</div>
+            <div class="age">年齡：67</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次上AI課；對新事物充滿好奇。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                羨慕同學生成的圖片、影片，也想讓自己有這個能力
+            </div>
+        </div>
+
+        <!-- 27 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="number">27號</span>
+                <span class="badge new">新學員</span>
+            </div>
+            <div class="name">葉麗美</div>
+            <div class="age">年齡：70</div>
+            <div class="section">
+                <div class="section-title">背景</div>
+                <div class="section-content">
+                    第一次學AI。
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>讓人印象深刻：</strong><br>
+                想知道AI怎樣應用到生活上
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
