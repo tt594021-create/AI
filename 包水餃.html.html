@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餃織心意：數位食光慢旅｜彰化社區大學18週跨齡共學課程</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Google Fonts: Noto Sans TC 與 Noto Serif TC 營造人文溫度與清晰閱讀感 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <!-- 載入 Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cream-bg': '#FDF8F2',      /* 溫潤米白底色 */
+                        'cream-card': '#FFFDF9',    /* 卡片柔白 */
+                        'warm-orange': '#D96B27',   /* 溫暖陶橘主色 */
+                        'warm-orange-light': '#F4A261', /* 淺暖橘 */
+                        'deep-tea': '#4A3525',      /* 深茶色文字/重點 */
+                        'tea-muted': '#7A6352',     /* 淺茶色輔助文字 */
+                        'sage-green': '#5E8C6A',    /* 蔬果自然綠 (資訊素養/健康) */
+                        'berry-rose': '#C85A53',    /* 暖心紅 (SEL社會情緒) */
+                        'digital-blue': '#3B7A8C'   /* 數位青藍 (科技素養) */
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 自訂基礎樣式與字體大小切換機制 */
+        :root {
+            --base-font-size: 16px;
+        }
+        html {
+            font-size: var(--base-font-size);
+            transition: font-size 0.25s ease-in-out;
+        }
+        html.large-font {
+            --base-font-size: 19px; /* 貼心照顧高齡長輩的大字體模式 */
+        }
+
+        /* 裝飾性背景紋理 */
+        .bg-handmade-pattern {
+            background-color: #FDF8F2;
+            background-image: radial-gradient(#E6D5C3 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* 卡片微幅上浮動效 */
+        .info-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(74, 53, 37, 0.12);
+        }
+
+        /* 隱藏捲軸但保留捲動功能 (用於手機版篩選列) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-handmade-pattern text-deep-tea font-sans antialiased selection:bg-warm-orange selection:text-white">
+
+    <!-- 頂部固定導覽列與無障礙字體切換工具 -->
+    <header class="sticky top-0 z-40 bg-cream-card/95 backdrop-blur-md border-b border-amber-200/70 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- 品牌識別 -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-full bg-warm-orange text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                    <!-- 手繪感水餃 SVG 圖示 -->
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 14c0-4.5 4-8 9-8s9 3.5 9 8c0 2.5-2.5 4-9 4s-9-1.5-9-4z"/>
+                        <path d="M6 10c1-1.5 2-1.5 3 0s2 1.5 3 0 2-1.5 3 0 2 1.5 3 0"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-xs font-bold tracking-wider text-warm-orange">彰化社區大學</span>
+                    <span class="font-serif font-bold text-base sm:text-lg text-deep-tea">餃織心意：數位食光慢旅</span>
+                </div>
+            </a>
+
+            <!-- 右側操作區：字體大小切換 & 快速導覽 -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- 字體大小切換小工具 -->
+                <div class="flex items-center bg-amber-100/80 p-1 rounded-full border border-amber-200" role="group" aria-label="字體大小調整">
+                    <span class="text-xs text-tea-muted pl-2.5 pr-1.5 hidden sm:inline font-medium">
+                        <i class="fa-solid fa-text-height mr-1"></i>字級
+                    </span>
+                    <button id="btn-font-normal" onclick="setFontSize('normal')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-deep-tea text-white shadow-sm cursor-pointer">
+                        標準
+                    </button>
+                    <button id="btn-font-large" onclick="setFontSize('large')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all text-deep-tea hover:bg-amber-200/60 cursor-pointer">
+                        大字體
+                    </button>
+                </div>
+
+                <!-- 立即報名按鈕 -->
+                <button onclick="openModal()" class="bg-warm-orange hover:bg-orange-700 text-white font-bold px-4 py-2 rounded-full text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>報名須知</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. 頂部視覺區 (Hero Section) -->
+    <section class="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20 px-4 sm:px-6 bg-gradient-to-b from-amber-100/70 via-cream-bg to-transparent border-b border-amber-200/50">
+        <!-- 裝飾圓形光暈 -->
+        <div class="absolute -top-24 -right-24 w-80 h-80 bg-warm-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-32 -left-20 w-72 h-72 bg-sage-green/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- 機構與學制標籤 -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-cream-card border border-amber-300/80 px-4 py-1.5 rounded-full shadow-sm mb-6">
+                <span class="font-bold text-warm-orange"><i class="fa-solid fa-school mr-1.5"></i>彰化社區大學</span>
+                <span class="text-amber-300">｜</span>
+                <span class="font-medium text-deep-tea"><i class="fa-solid fa-users mr-1.5 text-sage-green"></i>20至80歲跨齡共學</span>
+                <span class="text-amber-300">｜</span>
+                <span class="font-medium text-deep-tea"><i class="fa-regular fa-calendar-check mr-1.5 text-digital-blue"></i>18週課程</span>
+            </div>
+
+            <!-- 主標題 -->
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-deep-tea tracking-tight leading-tight mb-5">
+                餃織心意：<span class="text-warm-orange">數位食光慢旅</span>
+            </h1>
+
+            <!-- 溫暖引言 -->
+            <p class="max-w-2xl mx-auto text-tea-muted text-base sm:text-lg leading-relaxed mb-8">
+                一雙手揉進歲月的溫度，一顆心感受彼此的陪伴。<br class="hidden sm:inline">
+                在擀皮與包餡的慢時光裡，用科技守護食安，讓跨世代的笑容在熱氣騰騰中綻放。
+            </p>
+
+            <!-- 2. 核心亮點標籤 -->
+            <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10">
+                <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-cream-card border-2 border-warm-orange/30 text-deep-tea font-bold shadow-sm">
+                    <span class="w-7 h-7 rounded-full bg-warm-orange/15 text-warm-orange flex items-center justify-center">
+                        <i class="fa-solid fa-hands-holding-circle"></i>
+                    </span>
+                    水餃工藝
+                </span>
+                <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-cream-card border-2 border-berry-rose/30 text-deep-tea font-bold shadow-sm">
+                    <span class="w-7 h-7 rounded-full bg-berry-rose/15 text-berry-rose flex items-center justify-center">
+                        <i class="fa-solid fa-heart"></i>
+                    </span>
+                    社會情緒學習（SEL）
+                </span>
+                <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-cream-card border-2 border-digital-blue/30 text-deep-tea font-bold shadow-sm">
+                    <span class="w-7 h-7 rounded-full bg-digital-blue/15 text-digital-blue flex items-center justify-center">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </span>
+                    資訊素養
+                </span>
+                <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-cream-card border-2 border-sage-green/30 text-deep-tea font-bold shadow-sm">
+                    <span class="w-7 h-7 rounded-full bg-sage-green/15 text-sage-green flex items-center justify-center">
+                        <i class="fa-solid fa-people-group"></i>
+                    </span>
+                    跨齡共學
+                </span>
+            </div>
+
+            <!-- 快速錨點按鈕 -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="#course-info" class="px-6 py-3 rounded-xl bg-deep-tea text-white font-bold hover:bg-stone-800 transition-colors shadow-md">
+                    <i class="fa-solid fa-book-open mr-2"></i>了解課程特色
+                </a>
+                <a href="#syllabus" class="px-6 py-3 rounded-xl bg-cream-card text-deep-tea border border-amber-300 font-bold hover:bg-amber-50 transition-colors shadow-sm">
+                    <i class="fa-solid fa-list-ol mr-2 text-warm-orange"></i>瀏覽18週大綱
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 課程資訊卡片區 (Grid 佈局) -->
+    <main id="course-info" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div class="text-center mb-10">
+            <span class="text-sm font-bold tracking-widest text-warm-orange uppercase">Course Overview</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-deep-tea mt-1">課程核心設計與特色</h2>
+            <div class="w-16 h-1 bg-warm-orange mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- 卡片 1：課程理念 -->
+            <article class="info-card bg-cream-card rounded-2xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-warm-orange/15 text-warm-orange flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">課程理念</h3>
+                    </div>
+                    <p class="text-deep-tea leading-relaxed">
+                        結合水餃工藝、社會情緒學習與資訊素養，跨齡共學手作、覺察情緒並善用數位查證食安，創作出暖心又安心的創意美饌。
+                    </p>
+                </div>
+                <div class="mt-5 pt-3 border-t border-amber-100 flex items-center text-xs text-tea-muted font-medium">
+                    <i class="fa-solid fa-sparkles text-warm-orange mr-1.5"></i>手作溫度 × 情緒陪伴 × 數位安心
+                </div>
+            </article>
+
+            <!-- 卡片 2：課程目標 -->
+            <article class="info-card bg-cream-card rounded-2xl p-6 border border-amber-200/80 shadow-sm md:col-span-2 lg:col-span-2 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-berry-rose/15 text-berry-rose flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">課程目標</h3>
+                    </div>
+                    <p class="text-deep-tea leading-relaxed">
+                        為連結跨世代情誼並破除飲食假訊息，本課程融合傳統麵食技藝、社會情緒學習（SEL）與資訊素養。學員將掌握擀皮調餡與多元包法，學會辨識網路食安真偽，在協作中培養同理心與專注力，最終將手作溫度帶入家庭，並透過社區共餐傳遞關懷與幸福。
+                    </p>
+                </div>
+                <div class="mt-5 pt-3 border-t border-amber-100 flex flex-wrap gap-2 text-xs font-medium">
+                    <span class="px-2.5 py-1 rounded-md bg-amber-100/70 text-deep-tea">知識與技藝</span>
+                    <span class="px-2.5 py-1 rounded-md bg-rose-100/70 text-berry-rose">同理心與專注力</span>
+                    <span class="px-2.5 py-1 rounded-md bg-sky-100/70 text-digital-blue">食安真偽辨識</span>
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-100/70 text-sage-green">社區共餐連結</span>
+                </div>
+            </article>
+
+            <!-- 卡片 3：條件限制 -->
+            <article class="info-card bg-cream-card rounded-2xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-sage-green/15 text-sage-green flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">條件限制（初階入門）</h3>
+                    </div>
+                    <p class="text-deep-tea leading-relaxed">
+                        歡迎20至80歲對麵食手作、數位新知及人際互動有興趣的民眾報名。本課程為初階入門設計，無須具備烹飪基礎或高階3C操作能力，僅需具備基本智慧型手機操作概念（如掃描QR Code、使用LINE），並保持開放、樂於分享的學習熱忱即可。
+                    </p>
+                </div>
+                <div class="mt-5 pt-3 border-t border-amber-100 flex items-center text-xs text-sage-green font-bold">
+                    <i class="fa-solid fa-circle-check mr-1.5"></i>零烹飪基礎友善・會用LINE就能上手
+                </div>
+            </article>
+
+            <!-- 卡片 4：授課方式 -->
+            <article class="info-card bg-cream-card rounded-2xl p-6 border border-amber-200/80 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-digital-blue/15 text-digital-blue flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">多元授課方式</h3>
+                    </div>
+                    <ul class="space-y-2 text-deep-tea text-sm sm:text-base">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>講師示範與實際操作</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>個別指導與反覆練習</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>團體互動及小組活動</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>案例討論與心得分享</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>影片欣賞及圖像教學</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>實物觀賞及樣品教學</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-warm-orange mt-1 shrink-0"></i>
+                            <span>學員競賽及獎勵表揚</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- 卡片 5 & 6 組合欄：發展計畫 + 教學設計亮點 -->
+            <div class="flex flex-col gap-6">
+                <!-- 發展計畫 -->
+                <article class="info-card bg-cream-card rounded-2xl p-6 border border-amber-200/80 shadow-sm flex-1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-700 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">未來發展計畫</h3>
+                    </div>
+                    <p class="text-deep-tea leading-relaxed">
+                        未來結合彰化在地農產開發特色水餃，建置社區數位食譜庫，並培訓學員成為食安與共餐種子講師，擴大在地服務能量。
+                    </p>
+                </article>
+
+                <!-- 教學設計亮點 -->
+                <article class="info-card bg-gradient-to-br from-amber-50 to-orange-100/70 rounded-2xl p-6 border-2 border-warm-orange/40 shadow-sm flex-1 relative overflow-hidden">
+                    <div class="absolute top-3 right-3 bg-warm-orange text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                        精華體驗
+                    </div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-warm-orange text-white flex items-center justify-center text-lg shadow-sm">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-deep-tea">教學設計亮點</h3>
+                    </div>
+                    <p class="text-deep-tea leading-relaxed font-medium">
+                        第6週「食安偵探破迷思」：播假訊息案例引導討論，小組實作手機查證添加物真相，最後包製天然蔬果水餃並分享心情。
+                    </p>
+                </article>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 4. 18週完整課程大綱區 -->
+    <section id="syllabus" class="py-12 sm:py-16 px-4 sm:px-6 bg-amber-100/40 border-t border-amber-200/70">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-sm font-bold tracking-widest text-warm-orange uppercase">18-Week Syllabus</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-deep-tea mt-1">18週完整課程大綱</h2>
+                <p class="text-tea-muted mt-2 max-w-xl mx-auto">
+                    每週融合手作技藝、情緒交流與實用數位力，循序漸進陪伴您從零開始成為水餃達人。
+                </p>
+            </div>
+
+            <!-- 互動篩選與搜尋控制列 -->
+            <div class="bg-cream-card p-4 sm:p-5 rounded-2xl border border-amber-200 shadow-sm mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    
+                    <!-- 分類篩選按鈕列 -->
+                    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 lg:pb-0" role="tablist" aria-label="課程大綱分類篩選">
+                        <button onclick="filterSyllabus('all')" data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-deep-tea text-white shadow-sm cursor-pointer">
+                            全部週次 (18)
+                        </button>
+                        <button onclick="filterSyllabus('craft')" data-filter="craft" class="filter-btn px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-amber-100/70 text-deep-tea hover:bg-amber-200/70 cursor-pointer">
+                            <i class="fa-solid fa-hands text-warm-orange mr-1"></i>手作工藝
+                        </button>
+                        <button onclick="filterSyllabus('sel')" data-filter="sel" class="filter-btn px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-rose-50 text-berry-rose hover:bg-rose-100 cursor-pointer">
+                            <i class="fa-solid fa-heart mr-1"></i>社會情緒 SEL
+                        </button>
+                        <button onclick="filterSyllabus('digital')" data-filter="digital" class="filter-btn px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-sky-50 text-digital-blue hover:bg-sky-100 cursor-pointer">
+                            <i class="fa-solid fa-mobile-screen mr-1"></i>資訊素養
+                        </button>
+                        <button onclick="filterSyllabus('community')" data-filter="community" class="filter-btn px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-emerald-50 text-sage-green hover:bg-emerald-100 cursor-pointer">
+                            <i class="fa-solid fa-award mr-1"></i>成果與公益
+                        </button>
+                    </div>
+
+                    <!-- 關鍵字搜尋框 -->
+                    <div class="relative w-full lg:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-tea-muted"></i>
+                        <input type="text" id="syllabus-search" oninput="searchSyllabus()" placeholder="搜尋主題或食材 (如：高麗菜、攝影)..." 
+                            class="w-full pl-10 pr-9 py-2 rounded-xl bg-cream-bg border border-amber-300 text-deep-tea placeholder-tea-muted/70 focus:outline-none focus:ring-2 focus:ring-warm-orange text-sm">
+                        <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-tea-muted hover:text-deep-tea cursor-pointer" title="清除搜尋">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 篩選狀態提示 -->
+                <div id="filter-status" class="mt-3 pt-2.5 border-t border-amber-100 flex items-center justify-between text-xs text-tea-muted">
+                    <span>目前顯示：<strong id="visible-count" class="text-deep-tea">18</strong> 週課程</span>
+                    <button onclick="resetFilters()" id="reset-all-btn" class="hidden text-warm-orange font-bold hover:underline cursor-pointer">
+                        <i class="fa-solid fa-rotate-left mr-1"></i>顯示全部課程
+                    </button>
+                </div>
+            </div>
+
+            <!-- 課程大綱列表容器 (兼顧桌機表格閱讀感與手機卡片RWD) -->
+            <div id="syllabus-container" class="space-y-4">
+                <!-- 由 JavaScript 動態渲染 18 週完整資料 -->
+            </div>
+
+            <!-- 查無資料時的友善提示 -->
+            <div id="empty-state" class="hidden text-center py-12 bg-cream-card rounded-2xl border border-amber-200">
+                <div class="w-16 h-16 rounded-full bg-amber-100 text-warm-orange flex items-center justify-center text-2xl mx-auto mb-3">
+                    <i class="fa-solid fa-bowl-food"></i>
+                </div>
+                <h3 class="font-bold text-lg text-deep-tea">找不到符合條件的課程週次</h3>
+                <p class="text-tea-muted text-sm mt-1 mb-4">試試看更換其他分類標籤，或清除搜尋關鍵字喔！</p>
+                <button onclick="resetFilters()" class="px-5 py-2 rounded-xl bg-warm-orange text-white font-bold text-sm hover:bg-orange-700 transition-colors cursor-pointer">
+                    查看全部 18 週課程
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 頁尾 (Footer) -->
+    <footer class="bg-deep-tea text-amber-50 pt-14 pb-10 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-warm-orange text-white text-2xl mb-4 shadow-lg">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
+                邀請您加入「餃織心意：數位食光慢旅」
+            </h2>
+            <p class="text-amber-200/90 max-w-xl mx-auto mb-8 leading-relaxed">
+                無論您是 20 歲的青年，還是 80 歲的長輩，只要帶著一顆溫暖與好奇的心，就能在彰化社區大學找到屬於您的跨齡餐桌夥伴！
+            </p>
+
+            <!-- 報名呼籲按鈕 -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+                <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-warm-orange hover:bg-orange-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-hand-pointer"></i>
+                    <span>立即查看報名須知與準備事項</span>
+                </button>
+                <a href="#top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-amber-100 font-bold transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>回到頁面頂端</span>
+                </a>
+            </div>
+
+            <div class="border-t border-white/15 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-200/70 gap-2">
+                <p>主辦單位：彰化社區大學｜課程名稱：餃織心意：數位食光慢旅（18週課程）</p>
+                <p>跨齡共學・手作工藝・社會情緒學習（SEL）・資訊素養</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 報名須知互動彈窗 (Modal) - 取代 alert() 提供良好體驗 -->
+    <div id="enroll-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-cream-card rounded-3xl max-w-lg w-full p-6 sm:p-8 border-2 border-amber-300 shadow-2xl relative animate-[fadeIn_0.2s_ease-out]">
+            <!-- 關閉按鈕 -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-amber-100 hover:bg-amber-200 text-deep-tea flex items-center justify-center transition-colors cursor-pointer" aria-label="關閉視窗">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-warm-orange text-white flex items-center justify-center text-xl shadow-md">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold text-warm-orange">彰化社區大學招生資訊</span>
+                    <h3 id="modal-title" class="font-serif text-xl sm:text-2xl font-bold text-deep-tea">報名須知與課前準備</h3>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-deep-tea text-sm sm:text-base leading-relaxed bg-amber-50/80 p-4 rounded-2xl border border-amber-200/80">
+                <div class="flex items-start gap-2.5">
+                    <i class="fa-solid fa-users text-sage-green mt-1"></i>
+                    <div>
+                        <strong class="block text-deep-tea">招生對象：</strong>
+                        <span>20至80歲民眾皆可報名，無須烹飪基礎，特別歡迎祖孫、親子或跨齡好友結伴共學。</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fa-solid fa-mobile-screen-button text-digital-blue mt-1"></i>
+                    <div>
+                        <strong class="block text-deep-tea">自備數位工具：</strong>
+                        <span>請攜帶可上網之智慧型手機（需已安裝 LINE，課堂將逐步教學掃描 QR Code 與食安查詢）。</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fa-solid fa-bowl-rice text-warm-orange mt-1"></i>
+                    <div>
+                        <strong class="block text-deep-tea">環保與衛生提醒：</strong>
+                        <span>實作週次請自備圍裙、保鮮盒與環保餐具，將親手包製的愛心水餃安心帶回家與親友分享！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <button onclick="copyCourseInfo()" id="copy-btn" class="flex-1 py-3 px-4 rounded-xl bg-amber-100 hover:bg-amber-200 text-deep-tea font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製課程資訊分享給親友</span>
+                </button>
+                <button onclick="closeModal()" class="py-3 px-6 rounded-xl bg-warm-orange hover:bg-orange-700 text-white font-bold text-sm transition-colors cursor-pointer">
+                    我知道了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 邏輯控制 -->
+    <script>
+        // 完整 18 週課程大綱資料庫
+        const syllabusData = [
+            {
+                week: "第1週",
+                title: "相見歡：破冰餃子味覺記憶",
+                content: "課程介紹與安全規範。透過「味覺記憶卡」引導學員分享家族水餃故事（SEL自我覺察），分組認識跨齡夥伴，並建立班級專屬LINE共學群組。",
+                tags: ["sel", "digital"],
+                tagLabels: ["社會情緒 SEL", "資訊素養"]
+            },
+            {
+                week: "第2週",
+                title: "麵粉的魔法：手揉麵團與情緒紓壓",
+                content: "認識中筋麵粉與水溫比例。將揉麵團結合正念呼吸練習，感受麵團從粗糙到光滑的變化，學習釋放日常壓力（SEL自我管理），練習手擀圓形水餃皮。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第3週",
+                title: "經典高麗菜鮮肉：黃金比例與團隊分工",
+                content: "學習挑選新鮮豬肉與高麗菜脫水技巧，掌握打水與調味比例。小組成員依年齡與專長分工備料，體驗世代互助的樂趣（SEL人際技巧）。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第4週",
+                title: "捏出好心情：五種基礎與花式包法",
+                content: "示範元寶、柳葉、月牙、玫瑰等五種包法。學員反覆練習並互相觀摩指正，在面對形狀不完美時練習自我接納與正向鼓勵（SEL自我覺察）。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第5週",
+                title: "彰化在地鮮味：韭菜與季節時蔬餃",
+                content: "認識彰化在地農產，學習韭菜防出水與香氣保留秘訣。小組討論各自家庭的獨門調味，尊重彼此飲食習慣差異（SEL社會覺察）。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第6週",
+                title: "食安偵探破迷思：資訊查證與天然彩蔬皮",
+                content: "剖析網路流傳的「毒水餃、黑心添加物」假訊息，學習使用事實查核網站與食藥署資料庫（資訊素養），並利用火龍果、菠菜汁製作天然彩色水餃皮。",
+                tags: ["digital", "craft"],
+                tagLabels: ["資訊素養", "手作工藝"],
+                highlight: true
+            },
+            {
+                week: "第7週",
+                title: "海陸雙拼饗宴：鮮蝦與干貝調味藝術",
+                content: "學習蝦仁去腸泥、抓醃保脆技巧及海鮮去腥法。練習在小組協作中有效溝通食材分配與烹煮時間，培養負責任的決策能力（SEL負責任的決策）。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第8週",
+                title: "蔬食新風尚：植物肉與菇類健康餃",
+                content: "因應高齡與健康飲食趨勢，運用香菇、木耳與植物肉製作高纖水餃。討論素食與葷食者的共餐禮儀，培養對多元飲食文化的包容心。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第9週",
+                title: "公民素養週",
+                content: "由彰化社區大學安排",
+                tags: ["community"],
+                tagLabels: ["全校性活動"],
+                isSpecialCivic: true
+            },
+            {
+                week: "第10週",
+                title: "異國風味巡禮：韓式泡菜與日式煎餃",
+                content: "探索不同國家的餃子文化，學習韓式泡菜調味與日式冰花煎餃的麵粉水黃金比例，透過跨文化飲食拓展國際視野與好奇心。",
+                tags: ["craft"],
+                tagLabels: ["手作工藝"]
+            },
+            {
+                week: "第11週",
+                title: "創意造型工坊：金魚與福袋吉祥餃",
+                content: "進階造型技巧教學，製作象徵吉祥的金魚與福袋水餃。鼓勵跨齡學員腦力激盪，合作設計一款代表小組精神的創意造型水餃。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第12週",
+                title: "美味定格術：手機美食攝影與修圖",
+                content: "學習自然光運用、餐具擺盤構圖及基礎手機修圖App操作（資訊素養），為親手包的水餃拍出雜誌級美照，提升數位美學與成就感。",
+                tags: ["digital"],
+                tagLabels: ["資訊素養"]
+            },
+            {
+                week: "第13週",
+                title: "暖心湯餃與醬料學：酸辣湯與特調沾醬",
+                content: "學習煮出皮Q餡嫩不破皮的秘訣，並製作經典酸辣湯底與黃金比例蒜蓉醬。品嚐熱湯餃並進行「感恩回饋圈」，表達對夥伴的感謝（SEL社會覺察）。",
+                tags: ["craft", "sel"],
+                tagLabels: ["手作工藝", "社會情緒 SEL"]
+            },
+            {
+                week: "第14週",
+                title: "雲端食譜共創：打造我們的數位家傳味",
+                content: "指導學員使用手機語音輸入與雲端表單，將各組研發的配方與步驟數位化，共同編撰班級專屬的「跨齡水餃雲端食譜書」（資訊素養）。",
+                tags: ["digital"],
+                tagLabels: ["資訊素養"]
+            },
+            {
+                week: "第15週",
+                title: "創意餃子王爭霸賽：小組默契大考驗",
+                content: "舉辦趣味包水餃競賽，評比項目包含外觀創意、團隊溝通氣氛與食安衛生觀念。頒發「最佳默契獎」、「創意美學獎」等榮譽表揚。",
+                tags: ["craft", "sel", "community"],
+                tagLabels: ["手作工藝", "社會情緒 SEL", "成果與公益"]
+            },
+            {
+                week: "第16週",
+                title: "公益備餐日：為社區長輩包一份愛",
+                content: "結合社區關懷行動，學員共同討論適合高齡長輩咀嚼與低鈉的健康水餃配方，齊心協力包製愛心水餃，實踐所學回饋社會（SEL負責任的決策）。",
+                tags: ["community", "sel"],
+                tagLabels: ["成果與公益", "社會情緒 SEL"]
+            },
+            {
+                week: "第17週",
+                title: "成果展總彩排：故事海報與展演籌備",
+                content: "各組籌備期末成果展，練習使用簡報軟體或圖文排版工具製作「水餃與我的心情故事」海報，並演練上台分享的台風與表達技巧。",
+                tags: ["digital", "community"],
+                tagLabels: ["資訊素養", "成果與公益"]
+            },
+            {
+                week: "第18週",
+                title: "餃織幸福成果展：跨齡食光分享會",
+                content: "舉辦期末成果展，展示18週學習歷程海報、雲端食譜QR Code及特色水餃試吃，邀請親友與社區民眾共襄盛舉，見證跨齡共學的豐碩成果。",
+                tags: ["community", "digital"],
+                tagLabels: ["成果與公益", "資訊素養"],
+                isFinalExpo: true
+            }
+        ];
+
+        // 狀態變數
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // 標籤樣式對照表
+        function getTagBadgeStyle(label) {
+            if (label.includes("手作")) return "bg-orange-100 text-warm-orange border-orange-200";
+            if (label.includes("SEL")) return "bg-rose-100 text-berry-rose border-rose-200";
+            if (label.includes("資訊")) return "bg-sky-100 text-digital-blue border-sky-200";
+            if (label.includes("成果") || label.includes("公益")) return "bg-emerald-100 text-sage-green border-emerald-200";
+            return "bg-amber-100 text-deep-tea border-amber-200";
+        }
+
+        // 渲染課程大綱列表
+        function renderSyllabus() {
+            const container = document.getElementById('syllabus-container');
+            const emptyState = document.getElementById('empty-state');
+            const visibleCountEl = document.getElementById('visible-count');
+            const resetBtn = document.getElementById('reset-all-btn');
+
+            // 篩選資料
+            const filtered = syllabusData.filter(item => {
+                const matchCategory = currentFilter === 'all' || item.tags.includes(currentFilter);
+                const keyword = currentSearch.trim().toLowerCase();
+                const matchKeyword = !keyword || 
+                    item.week.toLowerCase().includes(keyword) || 
+                    item.title.toLowerCase().includes(keyword) || 
+                    item.content.toLowerCase().includes(keyword);
+                return matchCategory && matchKeyword;
+            });
+
+            visibleCountEl.textContent = filtered.length;
+
+            // 顯示或隱藏「顯示全部」按鈕
+            if (currentFilter !== 'all' || currentSearch.trim() !== '') {
+                resetBtn.classList.remove('hidden');
+            } else {
+                resetBtn.classList.add('hidden');
+            }
+
+            // 無資料處理
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            // 生成 HTML 卡片/列
+            container.innerHTML = filtered.map(item => {
+                // 特殊週次樣式判定：第9週（公民素養週）
+                if (item.isSpecialCivic) {
+                    return `
+                        <div class="rounded-2xl bg-amber-200/50 border-2 border-dashed border-amber-400 p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4">
+                                <span class="px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold text-sm shrink-0 shadow-sm">
+                                    ${item.week}
+                                </span>
+                                <h3 class="font-serif text-lg sm:text-xl font-bold text-deep-tea">
+                                    <i class="fa-solid fa-landmark text-amber-700 mr-2"></i>${item.title}
+                                </h3>
+                            </div>
+                            <div class="sm:text-right">
+                                <span class="inline-block px-3.5 py-1.5 rounded-xl bg-white/80 text-deep-tea font-medium text-sm border border-amber-300">
+                                    ${item.content}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 特殊週次樣式判定：第18週（成果展）
+                if (item.isFinalExpo) {
+                    return `
+                        <div class="rounded-2xl bg-gradient-to-r from-warm-orange/15 via-amber-100/80 to-emerald-50 border-2 border-warm-orange p-5 sm:p-6 shadow-md relative overflow-hidden">
+                            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                <div class="flex items-center justify-between md:flex-col md:items-start gap-2 md:w-32 shrink-0">
+                                    <span class="px-3.5 py-1.5 rounded-xl bg-warm-orange text-white font-bold text-sm shadow-sm">
+                                        <i class="fa-solid fa-star mr-1"></i>${item.week}
+                                    </span>
+                                    <span class="text-xs font-bold text-warm-orange">壓軸盛會</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                                        <h3 class="font-serif text-lg sm:text-xl font-bold text-deep-tea">${item.title}</h3>
+                                        <div class="flex flex-wrap gap-1.5">
+                                            ${item.tagLabels.map(lbl => `<span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${getTagBadgeStyle(lbl)}">${lbl}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                    <p class="text-deep-tea leading-relaxed">${item.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 一般週次（含第6週亮點標記）
+                const highlightBadge = item.highlight 
+                    ? `<span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-full bg-warm-orange text-white shadow-sm"><i class="fa-solid fa-fire"></i>教學亮點</span>` 
+                    : '';
+
+                return `
+                    <div class="info-card rounded-2xl bg-cream-card border ${item.highlight ? 'border-warm-orange/60 ring-1 ring-warm-orange/20' : 'border-amber-200/80'} p-5 sm:p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row md:items-start gap-4">
+                            <!-- 週次徽章 -->
+                            <div class="flex items-center justify-between md:block md:w-28 shrink-0">
+                                <span class="inline-block px-3.5 py-1.5 rounded-xl bg-amber-100 text-deep-tea font-bold text-sm border border-amber-200">
+                                    ${item.week}
+                                </span>
+                                <div class="md:hidden flex flex-wrap gap-1">
+                                    ${highlightBadge}
+                                </div>
+                            </div>
+
+                            <!-- 主題與內容 -->
+                            <div class="flex-1">
+                                <div class="flex flex-wrap items-center gap-2 mb-2">
+                                    <h3 class="font-serif text-lg sm:text-xl font-bold text-deep-tea">${item.title}</h3>
+                                    <div class="hidden md:inline-flex">${highlightBadge}</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${item.tagLabels.map(lbl => `<span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${getTagBadgeStyle(lbl)}">${lbl}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <p class="text-tea-muted leading-relaxed">${item.content}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 分類篩選切換
+        function filterSyllabus(category) {
+            currentFilter = category;
+            
+            // 更新按鈕外觀
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-deep-tea', 'text-white', 'shadow-sm');
+                    btn.classList.remove('bg-amber-100/70', 'bg-rose-50', 'bg-sky-50', 'bg-emerald-50', 'text-deep-tea', 'text-berry-rose', 'text-digital-blue', 'text-sage-green');
+                } else {
+                    btn.classList.remove('bg-deep-tea', 'text-white', 'shadow-sm');
+                    const f = btn.dataset.filter;
+                    if (f === 'all') btn.classList.add('bg-amber-100/70', 'text-deep-tea');
+                    if (f === 'craft') btn.classList.add('bg-amber-100/70', 'text-deep-tea');
+                    if (f === 'sel') btn.classList.add('bg-rose-50', 'text-berry-rose');
+                    if (f === 'digital') btn.classList.add('bg-sky-50', 'text-digital-blue');
+                    if (f === 'community') btn.classList.add('bg-emerald-50', 'text-sage-green');
+                }
+            });
+
+            renderSyllabus();
+        }
+
+        // 關鍵字搜尋
+        function searchSyllabus() {
+            const input = document.getElementById('syllabus-search');
+            const clearBtn = document.getElementById('clear-search');
+            currentSearch = input.value;
+
+            if (currentSearch.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderSyllabus();
+        }
+
+        // 清除搜尋框
+        function clearSearch() {
+            const input = document.getElementById('syllabus-search');
+            input.value = '';
+            currentSearch = '';
+            document.getElementById('clear-search').classList.add('hidden');
+            renderSyllabus();
+        }
+
+        // 重設所有篩選
+        function resetFilters() {
+            clearSearch();
+            filterSyllabus('all');
+        }
+
+        // 互動小工具：字體大小切換（標準 / 大字體）
+        function setFontSize(size) {
+            const htmlEl = document.documentElement;
+            const btnNormal = document.getElementById('btn-font-normal');
+            const btnLarge = document.getElementById('btn-font-large');
+
+            if (size === 'large') {
+                htmlEl.classList.add('large-font');
+                btnLarge.classList.add('bg-deep-tea', 'text-white', 'shadow-sm');
+                btnLarge.classList.remove('text-deep-tea', 'hover:bg-amber-200/60');
+                
+                btnNormal.classList.remove('bg-deep-tea', 'text-white', 'shadow-sm');
+                btnNormal.classList.add('text-deep-tea', 'hover:bg-amber-200/60');
+            } else {
+                htmlEl.classList.remove('large-font');
+                btnNormal.classList.add('bg-deep-tea', 'text-white', 'shadow-sm');
+                btnNormal.classList.remove('text-deep-tea', 'hover:bg-amber-200/60');
+
+                btnLarge.classList.remove('bg-deep-tea', 'text-white', 'shadow-sm');
+                btnLarge.classList.add('text-deep-tea', 'hover:bg-amber-200/60');
+            }
+        }
+
+        // 報名須知彈窗控制
+        function openModal() {
+            const modal = document.getElementById('enroll-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('enroll-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // 點擊彈窗背景關閉
+        document.getElementById('enroll-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // 按下 ESC 鍵關閉彈窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // 一鍵複製課程宣傳文字（使用相容性高的 execCommand 方式）
+        function copyCourseInfo() {
+            const textToCopy = "【彰化社區大學18週課程推薦】餃織心意：數位食光慢旅｜20至80歲跨齡共學！結合水餃工藝、社會情緒學習(SEL)與資訊素養，零基礎也能輕鬆學會手擀包餡、手機食安查證與美食攝影，快來一起暖心共學！";
+            
+            const tempInput = document.createElement("textarea");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const copyBtn = document.getElementById('copy-btn');
+            const originalHTML = copyBtn.innerHTML;
+            copyBtn.innerHTML = `<i class="fa-solid fa-check text-sage-green"></i><span class="text-sage-green">已複製！快去LINE分享吧</span>`;
+            setTimeout(() => {
+                copyBtn.innerHTML = originalHTML;
+            }, 2500);
+        }
+
+        // 頁面載入後初始化渲染
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSyllabus();
+        });
+    </script>
+</body>
+</html>
