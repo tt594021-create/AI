@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="謝幸吟的AI初階學習故事：60歲，讓人生再次充滿無限可能。">
+  <title>60歲，讓人生再次充滿無限可能｜謝幸吟</title>
+  <style>
+    :root {
+      --ink: #3f3b36;
+      --muted: #746d63;
+      --cream: #fffaf1;
+      --peach: #f6dfcf;
+      --rose: #c98270;
+      --gold: #c39a55;
+      --sage: #a8b6a0;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.9;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(246,223,207,.65), transparent 28rem),
+        radial-gradient(circle at 90% 55%, rgba(214,224,207,.55), transparent 30rem),
+        var(--cream);
+    }
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      place-items: center;
+      padding: 72px 22px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,250,241,.92), rgba(246,223,207,.8));
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(195,154,85,.35);
+      font-size: 5rem;
+    }
+    .hero::before { top: 12%; left: 9%; }
+    .hero::after { right: 10%; bottom: 13%; font-size: 4rem; }
+    .hero-inner { max-width: 850px; position: relative; z-index: 1; }
+    .eyebrow {
+      color: var(--rose);
+      letter-spacing: .22em;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 18px 0;
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      line-height: 1.25;
+      color: #51443b;
+      letter-spacing: .04em;
+    }
+    .subtitle { color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.25rem); }
+    .name-tag {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 8px 24px;
+      border: 1px solid rgba(195,154,85,.7);
+      border-radius: 999px;
+      color: #80623b;
+      background: rgba(255,255,255,.55);
+    }
+    main { width: min(920px, calc(100% - 36px)); margin: -38px auto 70px; position: relative; }
+    .paper {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(195,154,85,.22);
+      border-radius: 24px;
+      padding: clamp(26px, 6vw, 58px);
+      box-shadow: 0 18px 55px rgba(92,71,50,.09);
+    }
+    .section-label {
+      color: var(--rose);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      margin-bottom: 8px;
+    }
+    h2 { margin: 0 0 20px; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .story p { font-size: 1.08rem; margin: 0 0 17px; }
+    .story .opening { font-size: 1.25rem; font-weight: 700; color: #76564a; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, #dfc9ae, transparent); margin: 38px 0; }
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .ai-item {
+      min-width: 0;
+      text-align: center;
+      padding: 18px 8px;
+      border-radius: 18px;
+      background: #fff8ef;
+      border: 1px solid #f0e3d4;
+    }
+    .ai-item .emoji { display: block; font-size: 2rem; margin-bottom: 5px; }
+    .ai-item strong { display: block; font-size: .95rem; }
+    .ai-item small { color: var(--muted); font-size: .78rem; }
+    .quote {
+      margin: 36px 0 0;
+      padding: 30px 22px;
+      text-align: center;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f7e6d8, #f5efe2);
+    }
+    .quote p { margin: 0; font-size: clamp(1.35rem, 3.5vw, 2rem); font-weight: 800; color: #80594b; line-height: 1.6; }
+    .quote span { display: block; margin-top: 12px; color: #8c7968; font-size: .9rem; }
+    .closing { text-align: center; padding: 35px 10px 10px; }
+    .closing p { color: var(--muted); margin-bottom: 8px; }
+    .closing strong { display: block; color: #8a624e; font-size: clamp(1.25rem, 3vw, 1.8rem); }
+    footer { text-align: center; color: #92877b; padding: 0 20px 35px; font-size: .88rem; }
+    .back-top {
+      position: fixed; right: 18px; bottom: 18px;
+      border: 0; border-radius: 50%; width: 46px; height: 46px;
+      background: #9c7967; color: white; font-size: 1.2rem;
+      cursor: pointer; box-shadow: 0 5px 16px #0002;
+    }
+    @media (max-width: 650px) {
+      .hero { min-height: 66vh; }
+      .ai-grid { grid-template-columns: repeat(2, 1fr); }
+      .ai-item:last-child { grid-column: 1 / -1; }
+      main { margin-top: -24px; }
+    }
+    @media print {
+      body { background: white; }
+      .hero { min-height: auto; padding: 35px 10px; }
+      main { margin: 0 auto; width: 100%; }
+      .paper { box-shadow: none; border: 0; }
+      .back-top { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">一段學習・一份感動・無限可能</div>
+      <h1>60歲，讓人生再次<br>充滿無限可能</h1>
+      <div class="subtitle">用好奇心擁抱AI，讓每一天都有新的驚喜</div>
+      <div class="name-tag">學習者｜謝幸吟</div>
+    </div>
+  </header>
+
+  <main>
+    <article class="paper">
+      <section class="story">
+        <div class="section-label">MY LEARNING STORY</div>
+        <h2>我的 AI 初階學習旅程</h2>
+        <p class="opening">大家好，我是謝幸吟，今年60歲。</p>
+        <p>有人說，60歲應該慢慢享受退休生活；但我相信，人生不論幾歲，都可以重新開始！</p>
+        <p>每逢週六下午，我來到<strong>彰化社區大學</strong>，參加「讓AI解決我的生活大小事」初階課程，開啟一段全新的學習旅程。</p>
+        <p>第一次接觸AI，我就像打開了一扇神奇的大門！原來，只要動動手指、說出想法，AI就能幫我寫文字、畫圖像、製作影片、創作音樂，甚至寫出網頁程式。</p>
+        <p>從一開始的陌生、驚訝，到後來的好奇與感動，我發現科技並不是年輕人的專利，60歲的我一樣可以學習、創造，讓想像變成真實。</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section>
+        <div class="section-label">DISCOVER THE POSSIBILITIES</div>
+        <h2>第一次認識 AI 的神奇力量</h2>
+        <p>原來，AI可以陪伴我把腦海中的想法，變成看得見、聽得到、分享得出去的作品。</p>
+        <div class="ai-grid">
+          <div class="ai-item"><span class="emoji">✍️</span><strong>文字</strong><small>寫作與表達</small></div>
+          <div class="ai-item"><span class="emoji">🎨</span><strong>圖像</strong><small>創意與想像</small></div>
+          <div class="ai-item"><span class="emoji">🎬</span><strong>影片</strong><small>故事與影像</small></div>
+          <div class="ai-item"><span class="emoji">🎵</span><strong>音樂</strong><small>旋律與感動</small></div>
+          <div class="ai-item"><span class="emoji">💻</span><strong>網頁程式</strong><small>創作與分享</small></div>
+        </div>
+      </section>
+
+      <div class="quote">
+        <p>年齡只是數字，<br>學習沒有期限！</p>
+        <span>讓熱情成為前進的力量</span>
+      </div>
+
+      <section class="closing">
+        <p>60歲不是人生的句點，</p>
+        <p>而是另一段精彩旅程的起點。</p>
+        <strong>我要用好奇心擁抱AI，用學習豐富生活，<br>讓退休人生活得更精彩！</strong>
+      </section>
+    </article>
+  </main>
+
+  <footer>彰化社區大學｜AI 初階課程・學習分享<br>謝幸吟 © 2026</footer>
+  <button class="back-top" type="button" aria-label="回到頁首" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</body>
+</html>
